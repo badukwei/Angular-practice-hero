@@ -1,3 +1,4 @@
+import { Observable } from 'rxjs';
 import { HeroService } from './../../../core/service/hero.service';
 import { Component, OnInit, Input } from '@angular/core';
 import { Hero } from '../../../core/model/hero'
@@ -29,5 +30,12 @@ export class HeroDetailComponent implements OnInit{
 
   goBack(): void {
     this.location.back();
+  }
+
+  save(): void {
+    if (this.hero) {
+      this.heroService.updateHero(this.hero)
+        .subscribe(() => this.goBack());
+    }
   }
 }
